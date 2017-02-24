@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>有趣的鼠标悬浮模糊效果</title>
+<style type="text/css">
+*{
+    margin:0 auto;
+    padding:0 auto;
+}
+body{
+    background:#000;
+}
+.box{
+    position:fixed;
+    left:50%;
+    top:50%;
+    width:566px;
+    height:316px;
+    margin:-158px 0 0 -283px;
+    background:#fff;
+    overflow:hidden;
+}
+.box:before{
+    content:"";
+    z-index:-1;
+    display:block;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:506px;
+    height:256px;
+    margin:-128px 0 0 -253px;
+    background:#000 url(bg.jpg) center center no-repeat;
+    -webkit-filter:blur(0px);
+    filter:blur(0px);    
+    transition:all 1s;
+    -webkit-transition:all 1s;
+}
+.box:hover::before{
+    -webkit-filter:blur(5px);
+    filter:blur(5px);    
+}
+.entrance{
+    width:100%;
+    height:100%;
+    overflow:hidden; 
+}
+.entrance:before, .entrance:after{
+    display:block;
+    position:absolute;
+    left:50%;
+    top:50%;
+    filter:alpha(opacity:0);
+    opacity:0;
+    transition:all 1s;
+    -webkit-transition:all 1s;    
+}
+.entrance:before{
+    width:300px;
+    height:1px;
+    margin:0 0 0 -155px;
+    content: "";
+    border:5px solid #fff;
+    border-top:none;
+    border-bottom:none;     
+}
+.entrance:after{
+    width:1px;
+    height:180px;
+    margin:-95px 0 0 0px;
+    content: "";
+    border:5px solid #fff;
+    border-left:none;
+    border-right:none;    
+}
+.entrance:hover::before{
+    height:190px;
+    margin-top:-95px;
+    filter:alpha(opacity:100);
+    opacity:1;
+}
+.entrance:hover::after{
+    width:310px;
+    margin-left:-155px;
+    filter:alpha(opacity:100);
+    opacity:1;
+}
+.content{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:300px;
+    height:80px;
+    margin:0px 0 0 -150px;
+    text-align:center;
+    filter:alpha(opacity:0);
+    opacity:0;
+    transition:all 1s;
+}
+.entrance:hover>.content{
+    margin-top:-40px;
+    filter:alpha(opacity:100);
+    opacity:1;
+}
+.content h2.title{
+    font-size:24px;
+    font-weight:inherit;
+    margin-bottom:20px;
+}
+.content a.btn{
+    text-decoration:none;
+}
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { 
+    .title{
+        background-image: -webkit-linear-gradient(left, #ff0060, #eaff00 25%, #ff0060 50%, #eaff00 75%, #ff0060);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 200% 100%;
+        -webkit-animation: title-animation 4s infinite linear;
+    }
+    .btn{
+        background-image: -webkit-linear-gradient(top, #00d550, #ffa200 10%, #ffa200 40%, #00d550 50%, #ffa200 60%, #ffa200 90%, #00d550);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 100% 200%;
+        -webkit-animation: btn-animation 4s infinite linear;
+    }
+}
+@-webkit-keyframes title-animation {
+    0%  { background-position: 0 0;}
+    100% { background-position: -100% 0;}
+}
+@-webkit-keyframes btn-animation {
+    0%  { background-position: 0 0;}
+    100% { background-position: 0 -100%;}
+}
+
+</style>
+</head>
+<body>
+<div class="box">
+    <div class="entrance">
+        <div class="content">
+            <h2 class="title">欢迎参加百度前端技术学院</h2>
+            <a class="btn" href="#" target="_blank">点击报名</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
